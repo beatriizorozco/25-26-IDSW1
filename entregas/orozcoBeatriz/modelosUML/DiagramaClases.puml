@@ -30,7 +30,7 @@ class Menu {
 
 Presupuesto *-- Proveedor : paga
 Proveedor *-- Inventario : suministra
-Inventario *--  Receta : permite preparar
+Inventario *--  Receta : proporciona ingredientes a
 Receta *--  Menu : crea
-Receta *-- Presupuesto : ajusta a
+Receta *-- Presupuesto : se ajusta a
 @enduml

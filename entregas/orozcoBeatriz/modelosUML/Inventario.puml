@@ -1,0 +1,58 @@
+@startuml Inventario
+title Inventario - Cafetería
+
+class Producto {
+  nombre
+  sku
+  descripcion
+  precioUnitario
+  stockActual
+  stockMinimo
+  estado
+  fechaCreacion
+}
+
+class Categoria {
+  nombre
+  descripcion
+}
+
+class MovimientoStock {
+  tipo
+  cantidad
+  fecha
+  motivo
+  refDocumento
+}
+
+class Proveedor {
+  nombre
+  nif
+  telefono
+  email
+  direccion
+  estado
+}
+
+class OrdenCompra {
+  fecha
+  estado
+  observaciones
+  total
+}
+
+class ItemCompra {
+  cantidad
+  costoUnitario
+  subtotal
+}
+
+
+Categoria o-- Producto : clasifica
+Proveedor -- Producto : suministra
+Producto -- MovimientoStock : mueve
+Proveedor -- OrdenCompra : recibe
+OrdenCompra  *-- ItemCompra : contiene
+Producto -- ItemCompra : compra
+
+@enduml

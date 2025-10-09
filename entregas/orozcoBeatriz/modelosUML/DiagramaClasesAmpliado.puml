@@ -1,0 +1,141 @@
+@startuml DiagramaClasesAmpliado
+
+title Cafetería — Diagrama de Clases Ampliado
+
+package "Presupuesto" {
+  class Presupuesto {
+    periodoDeTiempo
+    costoTotal
+    limiteGasto
+    notas
+  }
+
+  class ObjetivoCostoReceta {
+    costoObjetivo
+    comentario
+  }
+}
+
+package "Proveedor" {
+  class Proveedor {
+    nombre
+    telefono
+    email
+    direccion
+    estado
+  }
+
+  class OrdenCompra {
+    fecha
+    estado
+    observaciones
+    total
+  }
+
+  class ItemCompra {
+    cantidad
+    costoUnitario
+    subtotal
+  }
+
+  class ContratoProveedor {
+    fechaInicio
+    fechaFin
+    condiciones
+  }
+
+  Proveedor -- OrdenCompra : recibe
+  OrdenCompra *-- ItemCompra : contiene
+  Proveedor -- ContratoProveedor : firma
+}
+
+
+package "Inventario" {
+  class Producto {
+    nombre
+    sku
+    descripcion
+    precioUnitario
+    stockActual
+    stockMinimo
+    estado
+    fechaCreacion
+  }
+
+  class Categoria {
+    nombre
+    descripcion
+  }
+
+  class MovimientoStock {
+    tipo
+    cantidad
+    fecha
+    motivo
+    refDocumento
+  }
+
+  class Almacen {
+    nombre
+    ubicacion
+  }
+
+  class Lote {
+    codigo
+    fechaCaducidad
+    cantidad
+  }
+
+  Categoria o-- Producto : clasifica
+  Producto -- MovimientoStock : mueve
+  Almacen -- Lote : contiene
+  Producto -- Lote : se agrupa en
+}
+
+package "Receta" {
+  class Receta {
+    nombre
+    tiempoPreparacion
+    pasos
+    costoEstimado
+  }
+
+  class RecetaIngrediente {
+    cantidad
+    unidad
+  }
+
+  Receta -- RecetaIngrediente : incluye
+}
+
+package "Menu" {
+  class Menu {
+    nombre
+    vigencia
+  }
+
+  class SeccionMenu {
+    nombre
+    orden
+  }
+
+  class MenuItem {
+    precio
+    disponibilidad
+  }
+
+  Menu -- SeccionMenu : organiza
+  SeccionMenu -- MenuItem : contiene
+}
+
+Proveedor.Proveedor -- Inventario.Producto : suministra
+Proveedor.ItemCompra -- Inventario.Producto : compra
+
+Receta.RecetaIngrediente -- Inventario.Producto : usa
+
+Menu.MenuItem -- Receta.Receta : referencia
+
+Presupuesto.Presupuesto -- Proveedor.OrdenCompra : limita
+Presupuesto.ObjetivoCostoReceta -- Receta.Receta : se ajusta a
+
+@enduml

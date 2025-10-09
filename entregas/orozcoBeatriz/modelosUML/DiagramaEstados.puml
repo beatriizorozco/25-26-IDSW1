@@ -1,6 +1,8 @@
-@startuml name DiagramaEstados
+@startuml DiagramaEstados
+title Cafetería - Diagrama de Estados
 
 [*] --> Abierta
+[*] --> Cerrada
 
 state GestionInventario {
     Abierta --> RevisandoStock : IniciarJornada
@@ -26,3 +28,5 @@ state GestionReceta {
 state GestionPresupuesto {
 
 }
+
+Cerrada --> [*] : FinJornada

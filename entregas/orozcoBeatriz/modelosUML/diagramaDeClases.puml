@@ -1,102 +1,74 @@
 @startuml diagramaDeClases
 title Diagrama de Clases - Gestión de Base de Datos
 
-skinparam classAttributeIconSize 0
-skinparam shadowing false
-
 class Tabla {
-  -idTabla: int
-  -nombre: String
-  -numFilas: int
+
 }
 
 class Campo {
-  -idCampo: int
-  -nombre: String
-  -longitud: int
-  -nulo: Boolean
+
 }
 
 class TipoDeCampo {
-  -idTipo: int
-  -nombre: String
-  -tamano: int
 }
 
 class Restriccion {
-  -idRestriccion: int
-  -tipo: String
-  -descripcion: String
+
 }
 
 class Llave {
-  -idLlave: int
-  -nombre: String
+
 }
 
 class Primaria {
-  -esCompuesta: Boolean
+
 }
 
 class Foranea {
-  -tablaReferencia: String
-  -campoReferencia: String
+
 }
 
 class Disparador {
-  -idDisparador: int
-  -nombre: String
-  -evento: String
-  -momento: String
+
 }
 
 class Esquema {
-  -idEsquema: int
-  -nombre: String
+
 }
 
 class Vista {
-  -idVista: int
-  -nombre: String
-  -definicionSQL: String
+
 }
 
 class Consulta {
-  -idConsulta: int
-  -sentenciaSQL: String
-  -fechaEjecucion: Date
+
 }
 
 class Permiso {
-  -idPermiso: int
-  -accion: String
-  -objeto: String
+
 }
 
 class Rol {
-  -idRol: int
-  -nombre: String
+
 }
 
 class Usuario {
-  -idUsuario: int
-  -nombre: String
-  -email: String
+
 }
 
 Esquema *-- Tabla : contiene >
 Esquema *-- Campo : contiene (relacion añadida) >
-Tabla *-- Campo : contiene >
+Tabla *-- Campo : contiene (relacion añadida) >
 Campo --> Restriccion : tiene >
 Restriccion --> TipoDeCampo : es >
 
-Usuario --> Rol : tiene >
-Rol --> Permiso : tiene >
+Usuario *-- Rol : tiene >
+Rol *-- Permiso : tiene >
 Usuario --> Consulta : ejecuta >
-Consulta --> Tabla : se ejecuta sobre >
+Tabla --> Vista : tiene >
 Consulta --> Vista : devuelve >
-Permiso --> Vista : aplica a >
-
+Tabla <|-- Consulta : se ejecuta sobre >
+Permiso -- Vista : aplica a >
 Tabla *-- Llave : contiene >
 Llave <|-- Primaria
 Llave <|-- Foranea

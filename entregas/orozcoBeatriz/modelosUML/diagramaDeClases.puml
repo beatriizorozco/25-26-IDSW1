@@ -1,60 +1,20 @@
 @startuml diagramaDeClases
 title Diagrama de Clases - Gestión de Base de Datos
 
-class Tabla {
-
-}
-
-class Campo {
-
-}
-
-class TipoDeCampo {
-}
-
-class Restriccion {
-
-}
-
-class Llave {
-
-}
-
-class Primaria {
-
-}
-
-class Foranea {
-
-}
-
-class Disparador {
-
-}
-
-class Esquema {
-
-}
-
-class Vista {
-
-}
-
-class Consulta {
-
-}
-
-class Permiso {
-
-}
-
-class Rol {
-
-}
-
-class Usuario {
-
-}
+class Tabla
+class Campo
+class TipoDeCampo
+class Restriccion
+class Llave
+class Primaria
+class Foranea
+class Disparador
+class Esquema
+class Vista
+class Consulta
+class Permiso
+class Rol
+class Usuario
 
 Esquema *-- Tabla : contiene >
 Esquema *-- Campo : contiene (relacion añadida) >
